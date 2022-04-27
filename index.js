@@ -1,7 +1,11 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
       morgan = require('morgan');
+const res = require('express/lib/response');
+const { mapValues, fill, filter } = require('lodash');
 
+      uuid = require('uuid');
+    
 
 const app = express();
 
@@ -13,25 +17,25 @@ app.use(morgan('common')); //add morgan middlewar library
 let users = [
   {
     id: 1,
-    username: "0val",
-    email: "val.moul@gmail.com",
-    password: "vt@rt2022!",
-    birthday: "17/06/1990",
-    favorites: [],
+    name: "Andrew",
+    email: "smth@gmail.com",
+    password: "potato&12",
+    birthday: "01/23/2002",
+    favoriteMovies: [],
   },
   {
     id: 2,
-    username: "stan1",
-    email: "stan.mont@gmail.com",
-    password: "Stgf022g34",
-    birthday: "13/12/1984",
-    favorites: [],
+    name: "HelloWorld",
+    email: "worldhello@gmail.com",
+    password: "strongpassword234",
+    birthday: "03/20/2001",
+    favoriteMovies: [],
   }
 ];
 
-let topMovies = [
+let movies = [
   {
-    title: 'Harry Potter and the Sorcerer\'s Stone',
+    title: "Harry Potter",
     year: '2001',
     genre: {
       name: "fantasy",
@@ -39,6 +43,38 @@ let topMovies = [
     },
     director: {
       name: "Chris Columbus",
+      birth: "1958",
+      death: "-",
+      bio: "",
+    },
+    actors: {},
+    imgURL: "",
+  },
+  {
+    title: "Lord of the Rings",
+    year: '2003',
+    genre: {
+      name: "Fantasy",
+      description: "",
+    },
+    director: {
+      name: "Peter Jackson",
+      birth: "1961",
+      death: "-",
+      bio: "",
+    },
+    actors: {},
+    imgURL: "",
+  },
+  {
+    title: "Inception",
+    year: '2010',
+    genre: {
+      name: "Science-Fiction",
+      description: "",
+    },
+    director: {
+      name: "Cristoper Nolan",
       birth: "1970",
       death: "-",
       bio: "",
@@ -47,40 +83,8 @@ let topMovies = [
     imgURL: "",
   },
   {
-    title: 'Lord of the Rings',
-    year: '2003',
-    genre: {
-      name: "Fantasy",
-      description: "",
-    },
-    director: {
-      name: "Peter Jackson",
-      birth: "1962",
-      death: "-",
-      bio: "",
-    },
-    actors: {},
-    imgURL: "",
-  },
-  {
-    title: 'Inception',
-    year: '2010',
-    genre: {
-      name: "Science-Fiction",
-      description: "",
-    },
-    director: {
-      name: "Cristoper Nolan",
-      birth: "1940",
-      death: "-",
-      bio: "",
-    },
-    actors: {},
-    imgURL: "",
-  },
-  {
-    title: 'Gatsby',
-    year: '2013',
+    title: "The Great Gatsby",
+    year: "2013",
     genre: {
       name: "Drama",
       description: "",
@@ -96,77 +100,142 @@ let topMovies = [
   }
 ];
 
+// CREATE
 
+app.post('/users', (req,res) => {
+  const newUser = req.body;
 
-// Gets the list of data about ALL users
-
-app.get('/users', (req, res) => {
-  res.json(users);
-});
-// Gets the data about a single user, by name
-
-app.get('/users/:name', (req, res) => {
-  res.json(users.find((user) =>
-    { return user.name === req.params.name }));
-});
-
-// Adds data for a new user to our list of users.
-app.post('/users', (req, res) => {
-  let newUser = req.body;
-
-  if (!newUser.name) {
-    const message = 'Missing name in request body';
-    res.status(400).send(message);
+  if (newUser.name) {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).json(newUser)
   } else {
-    newuser.id = uuid.v4();
-    users.push(newuser);
-    res.status(201).send(newuser);
+   res.status(400).send('users need names!')   
   }
-});
+})
 
-// Deletes a user from our list by ID
-app.delete('/users/:id', (req, res) => {
-  let user = users.find((user) => { return user.id === req.params.id });
 
+
+// UPDATE 
+
+// add favorite movie
+app.post('/users/:id/:movieTitle', (req, res) => {
+   const {id, movieTitle} = req.params;
+
+   let user = users.find(user => user.id = id);
+   
+   if (user) {
+     user.favoriteMovies.push(movieTitle);
+     res.status(200).send(`${movieTitle} was added to favorites!`);
+   } else {
+     req.status(400).send('no such user')
+   }
+})
+
+
+// DELETE
+
+app.delete('/users/:id/:movieTitle', (req, res) => {
+   const {id, movieTitle} = req.params;
+
+   let user = users.find(user => user.id = id);
+   
+   if (user) {
+     user.favoriteMovies.filter(title => title !== movieTitle);
+     res.status(200).send(`${movieTitle} has been removed from favorites!`);
+   } else {
+     req.status(400).send('no such thing')
+   }
+})
+
+
+// DELETE users 
+
+app.delete('/users/:id/', (req, res) => {
+   const {id} = req.params;
+
+   let user = users.find(user => user.id = id);
+
+   if (user) {
+     users = users.filter(user => user.id != id);
+     res.status(200).send(`user ${id} has been removed!`);
+   } else {
+     req.status(400).send('no such user')
+   }
+})
+
+
+
+
+//update user (PUT)
+app.put('/users/:id', (req,res) => {
+  const {id} = req.params;
+  const updatedUser = req.body;
+
+  let user = users.find( user => user.id == id);
   if (user) {
-    users = users.filter((obj) => { return obj.id !== req.params.id });
-    res.status(201).send('user ' + req.params.id + ' was deleted.');
+    user.name = updatedUser.name;
+    res.status(200).json(user);
+  } else {
+    res.status(400).send('no such users!')
   }
-});
+  
+})
 
 
-// GET requests
+
+
+// READ
+
+
+// welcome
+
 app.get('/', (req, res) => {
-  res.send('Welcome to my movies club!');
-});
+  res.status(200).send('Welcome to my movie club!!');
+})
 
-app.get('/documentation', (req, res) => {                  
-  res.sendFile('public/documentation.html', { root: __dirname });
-});
-
+// all movies 
 app.get('/movies', (req, res) => {
-  res.json(topMovies);
-}); 
+  res.status(200).json(movies);
+})
 
-//(Read) responds with a json of the specific movie asked for genre
+// get movie by title
 
+app.get('/movies/:title', (req, res) => {
+  const { title } = req.params;
+  const movie = movies.find(movie => movie.title === title);
+
+  if (movie) {
+    res.status(200).json(movie);
+  } else {
+    res.status(400).send('...no such title!')
+  }
+})
+
+// get info about genre
 app.get('/movies/genre/:genreName', (req, res) => {
   const { genreName } = req.params;
-  const genre = movies.find( movie => movie.genre.name === title).genre;
+  const genre = movies.find(movie => movie.genre.name === genreName).genre;
 
   if (genre) {
-    res.status (200).json(genre);
+    res.status(200).json(genre);
   } else {
-    res.status(400).send('no such genre')
+    res.status(400).send('...no such genre!')
   }
-}); 
+})
 
-app.use(express.static('public')); //serves “documentation.html” file from the public folder
+// get info by Director Name
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-  });
+app.get('/movies/director/:directorName', (req, res) => {
+  const { directorName } = req.params;
+  const director = movies.find(movie => movie.director.name === directorName).director;
+
+  if (director) {
+    res.status(200).json(director);
+  } else {
+    res.status(400).send('...no such director!')
+  }
+})
 
 // listen for requests
 app.listen(8080, () => {
