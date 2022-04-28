@@ -237,6 +237,12 @@ app.get('/movies/director/:directorName', (req, res) => {
   }
 })
 
+// error handler 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+
 // listen for requests
 app.listen(8080, () => {
   console.log('Your app is listening on port 8080.');
