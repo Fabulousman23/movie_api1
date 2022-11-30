@@ -30,6 +30,7 @@ let allowedOrigins = [
   "http://localhost:1234",
   "http://localhost:8080",
   "https://my-movie-app1234.herokuapp.com",
+  "http://localhost:4200"
 ];
 
 app.use(
