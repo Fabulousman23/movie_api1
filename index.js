@@ -29,7 +29,7 @@ let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://lo
   "https://my-movie-app1234.herokuapp.com",
   "https://the-great-fabulousman23-site.netlify.app",
   "http://localhost:4200",
-  "https://fabulousman23.github.io",];
+  "https://fabulousman23.github.io"];
 app.use(
   cors({
     origin: (origin, callback) => {
