@@ -32,9 +32,7 @@ let allowedOrigins = [
   "https://my-movie-app1234.herokuapp.com",
   "https://the-great-fabulousman23-site.netlify.app",
   "http://localhost:4200",
-  "https://fabulousman23.github.io",
-
-
+  "https://fabulousman23.github.io"
 ];
 
 app.use(
