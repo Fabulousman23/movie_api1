@@ -1,0 +1,232 @@
+let movie1 = {
+    Title: "Harry Potter",
+    Description: "Harry Potter is an orphaned boy brought up by his unkind Muggle (non-magical) aunt and uncle. At the age of eleven, half-giant Rubeus Hagrid informs him that he is actually a wizard and that his parents were murdered by an evil wizard named Lord Voldemort.",
+    Genre: {
+      Name: "fantasy",
+      Description: "Fantasy by definition, fantasy is a genre that typically features the use of magic or other supernatural phenomena in the plot, setting, or theme. Magical or mythological creatures often feature, as well as races other than humans, such as elves, dwarves, or goblins."
+    },
+    Director: {
+      Name: "Chris Columbus",
+      Bio: "Chris Columbus is an American filmmaker",
+      Birth: "1958",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt0241527/mediaviewer/rm2105413120/",
+    Featured: true,
+  }
+db.movies.insertOne(movie1)
+
+let user1 = {
+    Username: "Andrew Makiev",
+    Password: "2301",
+    Email: "andrew.makiev@gmail.com",
+    Birthday: "01/23/1991",
+    FavoriteMovies: []
+}
+db.users.insertOne(user1)
+
+let movie2 = {
+    Title: "The Lord of The Rings",
+    Description: "The Lord of the Rings is the saga of a group of sometimes reluctant heroes who set forth to save their world from consummate evil. Its many worlds and creatures were drawn from Tolkien's extensive knowledge of philology and folklore.",
+    Genre: {
+      Name: "Fantasy",
+      Description: "Fantasy by definition, fantasy is a genre that typically features the use of magic or other supernatural phenomena in the plot, setting, or theme. Magical or mythological creatures often feature, as well as races other than humans, such as elves, dwarves, or goblins."
+    },
+    Director: {
+      Name: "Peter Jackson",
+      Bio: "Peter Jackson is New Zealand director, perhaps best known for his film adaptations of J.R.R. Tolkien's The Lord of the Rings and The Hobbit",
+      Birth: "1961",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976/",
+    Featured: true,
+  }
+db.movies.insertOne(movie2)
+
+let user2 = {
+    Username: "Yana",
+    Password: "235",
+    Email: "yana@gmail.com",
+    Birthday: "02/03/1991",
+    FavoriteMovies: []
+}
+db.users.insertOne(user2)
+
+let movie3 = {
+    Title: "The Lord of the Rings: The Return of the King",
+    Description: "The Lord of the Rings is the saga of a group of sometimes reluctant heroes who set forth to save their world from consummate evil. Its many worlds and creatures were drawn from Tolkien's extensive knowledge of philology and folklore.",
+    Genre: {
+      Name: "Fantasy",
+      Description: "Fantasy by definition, fantasy is a genre that typically features the use of magic or other supernatural phenomena in the plot, setting, or theme. Magical or mythological creatures often feature, as well as races other than humans, such as elves, dwarves, or goblins."
+    },
+    Director: {
+      Name: "Peter Jackson",
+      Bio: "Peter Jackson is New Zealand director, perhaps best known for his film adaptations of J.R.R. Tolkien's The Lord of the Rings and The Hobbit",
+      Birth: "1961",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt0167260/mediaviewer/rm584928512/",
+    Featured: true,
+  }
+db.movies.insertOne(movie3)
+
+let user3 = {
+    Username: "Leonid",
+    Password: "235",
+    Email: "leon@gmail.com",
+    Birthday: "01/05/1930",
+    FavoriteMovies: []
+}
+db.users.insertOne(user3)
+
+
+
+
+let movie4 = {
+    Title: "The Lord of the Rings: The Two Towers",
+    Description: "The Lord of the Rings is the saga of a group of sometimes reluctant heroes who set forth to save their world from consummate evil. Its many worlds and creatures were drawn from Tolkien's extensive knowledge of philology and folklore.",
+    Genre: {
+      Name: "Fantasy",
+      Description: "Fantasy by definition, fantasy is a genre that typically features the use of magic or other supernatural phenomena in the plot, setting, or theme. Magical or mythological creatures often feature, as well as races other than humans, such as elves, dwarves, or goblins."
+    },
+    Director: {
+      Name: "Peter Jackson",
+      Bio: "Peter Jackson is New Zealand director, perhaps best known for his film adaptations of J.R.R. Tolkien's The Lord of the Rings and The Hobbit",
+      Birth: "1961",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt7631058/mediaviewer/rm2738348033/",
+    Featured: true,
+  }
+db.movies.insertOne(movie4)
+
+let user4 = {
+    Username: "Iya",
+    Password: "2335",
+    Email: "ilya@gmail.com",
+    Birthday: "02/05/1930",
+    FavoriteMovies: []
+}
+db.users.insertOne(user4)
+
+
+
+let movie5 = {
+    Title: "The Hobbit: An Unexpected Journey",
+    Description: "An Unexpected Journey tells the tale of Bilbo Baggins (Martin Freeman), who is convinced by the wizard Gandalf (Ian McKellen) to accompany thirteen Dwarves, led by Thorin Oakenshield (Richard Armitage), on a quest to reclaim the Lonely Mountain from the dragon Smaug.",
+    Genre: {
+      Name: "Fantasy",
+      Description: "Fantasy by definition, fantasy is a genre that typically features the use of magic or other supernatural phenomena in the plot, setting, or theme. Magical or mythological creatures often feature, as well as races other than humans, such as elves, dwarves, or goblins."
+    },
+    Director: {
+      Name: "Peter Jackson",
+      Bio: "Peter Jackson is New Zealand director, perhaps best known for his film adaptations of J.R.R. Tolkien's The Lord of the Rings and The Hobbit",
+      Birth: "1961",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt0903624/mediaviewer/rm3577719808/",
+    Featured: true,
+  }
+db.movies.insertOne(movie5)
+
+let user5 = {
+    Username: "Lena",
+    Password: "23335",
+    Email: "lena@gmail.com",
+    Birthday: "03/05/1930",
+    FavoriteMovies: []
+}
+db.users.insertOne(user5)
+
+
+let movie6 = {
+    Title: "Inception",
+    Description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.",
+    Genre: {
+      Name: "Science Fiction",
+      Description: " is a genre of speculative fiction which typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life. It has been called the literature of ideas, and it often explores the potential consequences of scientific, social, and technological innovations."
+    },
+    Director: {
+      Name: "Christopher Nolan",
+      Bio: "Christopher Nolan is a British-American film director, producer, and screenwriter. ",
+      Birth: "1970",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt1375666/mediaviewer/rm3426651392/",
+    Featured: true,
+  }
+db.movies.insertOne(movie6)
+
+let user6 = {
+    Username: "Maxim",
+    Password: "23g35",
+    Email: "max@gmail.com",
+    Birthday: "05/05/1967",
+    FavoriteMovies: []
+}
+db.users.insertOne(user6)
+
+
+  
+let movie7 = {
+    Title: "The Dark Knight",
+    Description: "A gang of criminals robs a Gotham City mob bank; the Joker manipulates them into murdering each other for a higher share until only he remains and escapes with the money. Batman, District Attorney Harvey Dent and Lieutenant Jim Gordon form an alliance to rid Gotham of organized crime.",
+    Genre: {
+      Name: "Superhero Film",
+      Description: "A superhero film or superhero movie is a film that focuses on the actions of superheroes: individuals who usually possess extraordinary generally superhuman abilities, and are dedicated to protecting the public.."
+    },
+    Director: {
+      Name: "Christopher Nolan",
+      Bio: "Christopher Nolan is a British-American film director, producer, and screenwriter. ",
+      Birth: "1970",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt0468569/mediaviewer/rm4023877632/",
+    Featured: true,
+  }
+db.movies.insertOne(movie7)
+
+let user7 = {
+    Username: "Vika",
+    Password: "23g35",
+    Email: "vika@gmail.com",
+    Birthday: "04/04/1967",
+    FavoriteMovies: []
+}
+db.users.insertOne(user7)
+
+
+let movie10 = {
+Title: "Harry Potter and the Deathly Hallows: Part 2",
+    Description: "Harry Potter is an orphaned boy brought up by his unkind Muggle (non-magical) aunt and uncle. At the age of eleven, half-giant Rubeus Hagrid informs him that he is actually a wizard and that his parents were murdered by an evil wizard named Lord Voldemort.",
+    Genre: {
+      Name: "Fantasy",
+      Description: "Fantasy by definition, fantasy is a genre that typically features the use of magic or other supernatural phenomena in the plot, setting, or theme. Magical or mythological creatures often feature, as well as races other than humans, such as elves, dwarves, or goblins."
+    },
+    Director: {
+      Name: "Chris Columbus",
+      Bio: "Chris Columbus is an American filmmaker",
+      Birth: "1958",
+      Death: "-",
+    },
+    Imagepath: "https://www.imdb.com/title/tt1201607/mediaviewer/rm3179585537/",
+    Featured: true,
+  }
+db.movies.insertOne(movie10)
+
+let user10 = {
+    Username: "andrew",
+    Password: "2301",
+    Email: "andrew.makiev@gmail.com",
+    Birthday: "01/23/1991",
+    FavoriteMovies: []
+}
+db.users.insertOne(user10)
+
+
+
+
+mongoexport --collection=movies --db=test --out=mycollection.json
+
+  
+
