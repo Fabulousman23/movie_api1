@@ -11,13 +11,11 @@ const Models = require("./models.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect(
-  "mongodb+srv://AndrewMakiev23:ropfok-ciVtib-2xuxca@cluster0.wptzo.mongodb.net/myFlixDB",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+mongoose.connect("mongodb://localhost:27017/test", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 
 //Middleware to...
 app.use(express.static("public")); // serve static files
