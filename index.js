@@ -1,9 +1,8 @@
-// hello world!
 const { check, validationResult } = require("express-validator");
 const express = require("express"),
   bodyParser = require("body-parser");
 uuid = require("uuid");
-
+// comment
 const morgan = require("morgan");
 const app = express();
 const mongoose = require("mongoose");
@@ -12,10 +11,13 @@ const Models = require("./models.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect("mongodb://localhost:27017/test", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://AndrewMakiev23:ropfok-ciVtib-2xuxca@cluster0.wptzo.mongodb.net/myFlixDB",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 //Middleware to...
 app.use(express.static("public")); // serve static files
@@ -24,14 +26,8 @@ app.use(bodyParser.json()); // use body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require("cors");
-let allowedOrigins = [
-  "http://localhost:1234",
-  "http://localhost:8080",
-  "https://my-movie-app1234.herokuapp.com",
-  "https://the-great-fabulousman23-site.netlify.app",
-  "http://localhost:4200",
-  "https://fabulousman23.github.io",
-];
+let allowedOrigins = ["http://localhost:8080", "http://testsite.com"];
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -53,20 +49,16 @@ const passport = require("passport");
 require("./passport");
 
 // return JSON object whem at /movies
-app.get(
-  "/movies",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Movies.find()
-      .then((movies) => {
-        res.status(201).json(movies);
-      })
-      .catch((error) => {
-        console.error(error);
-        res.status(500).send("Error: " + error);
-      });
-  }
-);
+app.get("/movies", (req, res) => {
+  Movies.find()
+    .then((movies) => {
+      res.status(201).json(movies);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
+});
 
 // Get all users
 app.get(
@@ -191,7 +183,7 @@ app.put(
 
 // allow user to deregister
 
-pp.delete(
+app.delete(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
