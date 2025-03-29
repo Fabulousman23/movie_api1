@@ -31,7 +31,7 @@ let allowedOrigins = [
   "http://localhost:8080",
   "https://my-movie-app1234.herokuapp.com",
   "https://the-great-fabulousman23-site.netlify.app",
-  "http://localhost:4200",
+  "http://localhost:3000",
   "https://fabulousman23.github.io",
   "http://localhost:4200/movies",
 ];
@@ -39,9 +39,8 @@ let allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
+      if (!origin) return callback(null, true); // Allow non-browser requests
       if (allowedOrigins.indexOf(origin) === -1) {
-        // If a specific origin isn’t found on the list of allowed origins
         let message =
           "The CORS policy for this application doesn’t allow access from origin " +
           origin;
@@ -49,6 +48,7 @@ app.use(
       }
       return callback(null, true);
     },
+    credentials: true, // Allow cookies and authorization headers
   })
 );
 
@@ -59,10 +59,10 @@ require("./passport");
 // return JSON object whem at /movies
 app.get("/movies", (req, res) => {
   Movies.find()
-    .then((movies) => {
+    .then(movies => {
       res.status(201).json(movies);
     })
-    .catch((error) => {
+    .catch(error => {
       console.error(error);
       res.status(500).send("Error: " + error);
     });
@@ -74,10 +74,10 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.find()
-      .then((users) => {
+      .then(users => {
         res.status(201).json(users);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         res.status(500).send("Error: " + err);
       });
@@ -90,10 +90,10 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
-      .then((movie) => {
+      .then(movie => {
         res.json(movie);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         res.status(500).send("Error: " + err);
       });
@@ -127,7 +127,7 @@ app.post(
 
     let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
-      .then((user) => {
+      .then(user => {
         if (user) {
           //If the user is found, send a response that it already exists
           return res.status(400).send(req.body.Username + " already exists");
@@ -138,16 +138,16 @@ app.post(
             Email: req.body.Email,
             Birthday: req.body.Birthday,
           })
-            .then((user) => {
+            .then(user => {
               res.status(201).json(user);
             })
-            .catch((error) => {
+            .catch(error => {
               console.error(error);
               res.status(500).send("Error: " + error);
             });
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
         res.status(500).send("Error: " + error);
       });
@@ -196,14 +196,14 @@ app.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOneAndRemove({ Username: req.params.Username })
-      .then((user) => {
+      .then(user => {
         if (!user) {
           res.status(400).send(req.params.Username + " was not found");
         } else {
           res.status(200).send(req.params.Username + " was deleted.");
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         res.status(500).send("Error: " + err);
       });
@@ -239,10 +239,10 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ "Director.Name": req.params.Name })
-      .then((director) => {
+      .then(director => {
         res.status(201).json(director);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         res.status(500).send("Error: " + err);
       });
